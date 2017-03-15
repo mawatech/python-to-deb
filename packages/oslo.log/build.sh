@@ -1,0 +1,2 @@
+OX_EXTRA_BUILD_DEPENDS_ARGS='python-pbr(>=2.0.0),python-debtcollector(>=1.12.0),python-monotonic(>=1.2),python-oslo.context(>=2.13.0),python-oslo.serialization(>=2.17.0)'
+OX_EXTRA_DEPENDS_ARGS='python-debtcollector(>=1.12.0),python-monotonic(>=1.2),python-oslo.config(>=1:3.23.0),python-oslo.context(>=2.13.0),python-oslo.i18n(>=3.14.0),python-oslo.serialization(>=2.17.0),python-pbr(>=2.0.0),python-oslo.utils(>=3.23.0)''

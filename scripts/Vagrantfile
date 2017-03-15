@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'bento/debian-8.7'
+
+  config.vm.provider 'virtualbox' do |vb|
+    # Customize the amount of memory on the VM
+    vb.memory = '2096'
+    vb.cpus = '2'
+  end
+
+  config.cache.scope = :box if Vagrant.has_plugin?('vagrant-cachier')
+
+  # Share the root of the repo
+  config.vm.synced_folder '../', '/python-to-deb'
+  # Disable the default /vagrant share directory
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+
+  # Run provisioning scripts
+  config.vm.provision 'file', source: '~/.oscrc', destination: '.oscrc'
+  config.vm.provision 'shell', path: './setup-debian.sh', privileged: false
+  config.vm.provision 'shell', path: './setup-osc.sh', privileged: true
+
+  # Tell the user how to use the VM
+  config.vm.post_up_message = 'Box has been provisioned! Use "vagrant ssh" to enter the box. The repository root is available under "/python-to-deb".'
+end
